@@ -1,76 +1,73 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Hi, I'm [Your Name] 👋</h1>
+        <p>Cybersecurity Professional with extensive experience in the SOC realm.</p>
+    </header>
 
-/* Header Styles */
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a cybersecurity professional with extensive experience in threat detection, incident response, and security monitoring.</p>
+    </section>
 
-header h1 {
-    margin: 0;
-}
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>Threat Detection</li>
+            <li>Incident Response</li>
+            <li>Security Monitoring</li>
+            <li>SIEM Tools</li>
+            <li>SOAR Platforms</li>
+        </ul>
+    </section>
 
-/* Section Styles */
-section {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Incident Response Playbook</h3>
+            <p>A comprehensive playbook for handling various security incidents.</p>
+            <a href="https://github.com/yourusername/project1">View Project</a>
+        </div>
+        <div class="project">
+            <h3>Threat Hunting Scripts</h3>
+            <p>Scripts and tools for effective threat hunting and analysis.</p>
+            <a href="https://github.com/yourusername/project2">View Project</a>
+        </div>
+        <div class="project">
+            <h3>Security Automation</h3>
+            <p>Automation scripts for security tasks using SIEM and SOAR tools.</p>
+            <a href="https://github.com/yourusername/project3">View Project</a>
+        </div>
+    </section>
 
-section h2 {
-    color: #4CAF50;
-}
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>CISSP</li>
+            <li>CEH</li>
+            <li>OSCP</li>
+        </ul>
+    </section>
 
-/* Project Styles */
-.project {
-    margin-bottom: 20px;
-}
+    <section id="blog">
+        <h2>Blog Posts</h2>
+        <ul>
+            <li><a href="Link to Blog Post 1">Title of Blog Post 1</a></li>
+            <li><a href="Link to Blog Post 2">Title of Blog Post 2</a></li>
+        </ul>
+    </section>
 
-.project h3 {
-    margin: 0;
-    color: #333;
-}
-
-.project p {
-    margin: 5px 0;
-}
-
-.project a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-.project a:hover {
-    text-decoration: underline;
-}
-
-/* Footer Styles */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-footer a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
+    <footer>
+        <p>Connect with me on <a href="Your LinkedIn Profile"><i class="fab fa-linkedin"></i> LinkedIn</a> | <a href="Your Twitter Profile"><i class="fab fa-twitter"></i> Twitter</a></p>
+    </footer>
+</body>
+</html>

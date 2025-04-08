@@ -1,42 +1,54 @@
 # Hi, I'm Ibrahim Abdlrazik 👋
 
-## About Me
-I am a cybersecurity professional with extensive experience in the Security Operations Center (SOC) realm. My expertise includes threat detection, incident response, and security monitoring.
+## Intro
+🔭 I’m a Security Researcher working in Security Operation Center since 2021  
+🎓 BSc Graduate of Computer and Information Security  
+📜 Student of SANS FOR578 and FOR508  
+👉 Read about my first year in Security Operation Center here  
+🕵️‍♂️ I've contributed to the Mitre ATT&CK Framework  
+💻 Previously worked for BDC (Banque Du Caire), COR (Coordinates Middle East)  
+🌐 Currently working as SOC Consultant at the SIDF (Saudi Industrial Development Fund)  
+🔗 Check out my TryHackMe profile  
 
-- 🔭 I’m currently working on [Your Current Project]
-- 🌱 I’m learning [Threat Detection and Incident Response]
-- 💬 Ask me about [SOC]
-- 📫 How to reach me: [ibrahimabdlrazik@gmail.com]
-- ⚡ Fun fact: [I hate time]
+## My Projects
+### Open Source Tools for SOC
+- **Incident Response Playbooks**: Detailed playbooks for handling various types of security incidents.
+- **Threat Hunting Scripts**: Scripts and tools for effective threat hunting and analysis.
+- **Security Automation**: Automation scripts for security tasks using SIEM and SOAR tools.
 
-## Skills
-- **Threat Detection**
-- **Incident Response**
-- **Security Monitoring**
-- **SIEM Tools**
-- **SOAR Platforms**
+### CTF Challenges
+- **Insider Threat-themed CTFs**: OSINT challenges.
+- **CTF Lexicon**: Acronyms and technical jargon.
+- **CTF Quiz**: Multiple practice questions on various topics.
 
-## Projects
-### [Incident Response Playbooks]
-Description: A comprehensive playbook for handling various security incidents.
-
-
-### [Threat Hunting]
-Description: Scripts and tools for effective threat hunting and analysis.
-Link to Project
-
-### [Security Automation]
-Description: Automation scripts for security tasks using SIEM and SOAR tools.
-
+### Community Projects
 
 ## Certifications
-- **CEH**
-- **OSCP**
+- **EC-Council certified CEH (Certified Ethical Hacker)** - Jul 2020
+- **EC-Council certified ECIH (EC-Council Certified Incident Handler)** - Jun 2020
+- **EC-Council certified CHFI (Computer Hacking Forensics Investigator)** - Jun 2020
+- **GFACT (GIAC Foundational Cybersecurity Technologies)** - May 2023
+- **AWS Cloud Practitioner Essentials**
+- **IBM Resilient SOAR Foundations**
+- **MITRE ATT&CK Defender™ (MAD) ATT&CK® Fundamentals**
+- **MITRE ATT&CK Defender™ (MAD) ATT&CK® SOC Assessments**
+- **MITRE ATT&CK Defender™ (MAD) ATT&CK® Cyber Threat Intelligence**
+- **MITRE ATT&CK Defender™ ATT&CK® Threat Hunting**
 
-## Blog Posts
-- 
-- 
+## Talks and Workshops
+### Conference Workshops
+
+
+### Podcasts
+
 
 ## Connect with Me
-- LinkedIn: irazik
-- Twitter: dashtx
+- LinkedIn
+- X (Twitter)
+- Email
+
+## Fun Fact
+⚡ 
+
+## My Blog
+- Read my Research Blogs here

@@ -10,23 +10,25 @@
 </head>
 <body>
     <header>
-        <h1>Hi, I'm Ibrahim Abdlrazik 👋</h1>
-        <p>🔭 I’m a Security Operation Center Consultant working in Security Operation Center since 2021</p>
-        <p>🎓 BSc Graduate of Computer and Information Security</p>
-        <p>📜 Student of SANS FOR504 , FOR508 , FOR578</p>
-        <p>👉 <a href="https://yourbloglink.com"> Read about my first year in Security Operation Center here</a></p>
-        <p>🕵️‍♂️ I've contributed to the Mitre ATT&CK Framework</p>
-        <p>💻 Previously worked for BDC (Banque Du Caire), COR (Coordinates Middle East)</p>
-        <p>🌐 Currently working as SOC Consultant at the SIDF (Saudi Industrial Development Fund)</p>
-        <p>🔗 <a href="https://tryhackme.com/p/DashTX"> Check out my TryHackMe profile </a></p>
+        <div class="container">
+            <h1>Hi, I'm Ibrahim Abdlrazik 👋</h1>
+            <p>🔭 I’m a Security Researcher working in Security Operation Center since 2021</p>
+            <p>🎓 BSc Graduate of Computer and Information Security</p>
+            <p>📜 Student of SANS FOR578 and FOR508</p>
+            <p>👉 <a href="https://yourbloglink.com"> Read about my first year in Security Operation Center here</a></p>
+            <p>🕵️‍♂️ I've contributed to the Mitre ATT&CK Framework</p>
+            <p>💻 Previously worked for BDC (Banque Du Caire), COR (Coordinates Middle East)</p>
+            <p>🌐 Currently working as SOC Consultant at the SIDF (Saudi Industrial Development Fund)</p>
+            <p>🔗 <a href="https://tryhackme.com/p/DashTX"> Check out my TryHackMe profile</a></p>
+        </div>
     </header>
 
-    <section id="about">
+    <section id="about" class="container">
         <h2>About Me</h2>
-        <p> A SOC team lead, with a vested interest in Cyber Security specifically the Blue Team side. I acquired GFACT, CEH, ECIH, CHFI, MITRE ATT&CK Defender. Active on the TryHackMe, CyberDefenders platforms, acquiring experience from the rooms created by others in the community. I have demonstrated a history of working in the information technology and services industry. My area of expertise centers around Windows and Network telemetry. I possess a strong aptitude for developing and optimizing customer-specific use cases and playbooks, consistently staying at the forefront of evolving security trends. I exhibit proficiency across a range of SIEM, SOAR, and EDR solutions, as an integral commitment to the realm of digital forensics and incident response, I am actively engaged in enhancing my proficiency in incident response techniques and methodologies. I am confident in surpassing your expectations and eagerly look forward to contributing my expertise to your organization. </p>
+        <p>I am a cybersecurity professional with extensive experience in threat detection, incident response, and security monitoring.</p>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="container">
         <h2>Skills</h2>
         <ul>
             <li>Threat Detection</li>
@@ -42,7 +44,7 @@
         </ul>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="container">
         <h2>Projects</h2>
         <div class="project">
             <h3>Comprehensive Vulnerability Assessment</h3>
@@ -90,12 +92,13 @@
                 <li><strong>Automation Implementation:</strong> Implemented automation scripts to perform tasks such as log analysis, alert triage, and incident response actions.</li>
                 <li><strong>Integration with SOAR:</strong> Integrated automation scripts with SOAR platforms to enable automated response and remediation.</li>
                 <li><strong>Testing and Validation:</strong> Conducted testing and validation of automation scripts to ensure accuracy and effectiveness.</li>
+                <li><strong>Continuous Improvement:</strong> Regularly updated and refined the automation scripts and playbooks based on feedback and new threat intelligence.</li>
             </ul>
-            <p>For more details, visit the <a href="https://github.com/austinsonger/Incident-Playbook">Incident-Playbook repository </a>.</p>
+            <p>For more details, visit the <a href="https://github.com/austinsonger/Incident-Playbook">Incident-Playbook repository</a> and the <a href="https://www.cisa.gov/sites/default/files/2024-08/Federal_Government_Cybersecurity_Incident_and_Vulnerability_Response_Playbooks_508C.pdf">Federal Government Cybersecurity Incident and Vulnerability Response Playbooks</a>.</p>
             <a href="https://github.com/ibrahimabdlrazik/project3">View Project</a>
         </div>
-
-    <section id="Certifications">
+    </section>
+    <section id="certifications" class="container">
         <h2>Certifications</h2>
         <ul>
             <li>EC-Council certified CEH (Certified Ethical Hacker) - Jul 2020</li>
@@ -111,7 +114,7 @@
         </ul>
     </section>
 
-    <section id="CTF">
+    <section id="CTF" class="container">
         <h2>CTF: TryHackMe Learning Paths Completed</h2>
         <ul>
             <li>Introduction to Cybersecurity Learning Path</li>
@@ -121,16 +124,28 @@
         </ul>
     </section>
 
-    <section id="Blog">
+    <section id="blog" class="container">
         <h2>Blog Posts</h2>
         <ul>
             <li><a href="Link to Blog Post 1">Title of Blog Post 1</a></li>
-            <li><a href="Link to Blog Post 2">Title of Blog Post 2</a></li>
         </ul>
     </section>
 
-    <footer>
-        <p> Connect with me on <a href="https://www.linkedin.com/in/iabdlrazik"><i class="fab fa-linkedin"></i> LinkedIn</a> | <a href="https://x.com/DasHTX0"><i class="fab fa-twitter"></i> X</a> | <a href="mailto:ibrahimabdlrazik@gmail.com"><i class="fas fa-envelope"></i> Email</a></p>
+    <section id="contact" class="container">
+        <h2>Contact Me</h2>
+        <form action="mailto:ibrahimabdlrazik@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer class="container">
+        <p>Connect with me on <a href="https://www.linkedin.com/in/iabdlrazik"><i class="fab fa-linkedin"></i> LinkedIn</a> | <a href="https://x.com/DasHTX0"><i class="fab fa-twitter"></i> X</a> | <a href="mailto:ibrahimabdlrazik@gmail.com"><i class="fas fa-envelope"></i> Email</a></p>
     </footer>
 </body>
 </html>

@@ -49,27 +49,6 @@
         <h2>Projects</h2>
 
         <div class="project">
-            <h3>AI-Augmented Cyber Defense Ecosystem</h3>
-            <p><strong>Objective:</strong> Designed and built a production-grade multi-agent AI system covering the full Defender's Advantage lifecycle — from threat intelligence and detection engineering through incident response, threat hunting, and governance — with 23 specialist agents, 264 operational skills, and an embedded SANS reference library.</p>
-            <p><strong>Tools &amp; Tech:</strong> Claude Code (claude-sonnet-4-6, claude-haiku-4-5), MITRE ATT&CK, Sigma, KQL, YARA, SANS FOR508/FOR578/FOR608/FOR572</p>
-            <h4>Architecture:</h4>
-            <ul>
-                <li><strong>6 Defender's Advantage Functions:</strong> Intelligence → Detect → Hunt → Respond → Validate → Mission Control — 23 specialist agents mapped to each function with explicit tool allowlists and structured JSON inter-agent handoffs.</li>
-                <li><strong>CTI Triage Pipeline:</strong> threat-intel-analyst extracts structured TTPs/IOCs from raw reports into schema-validated JSON → decision-agent (haiku model, narrow classifier) routes each TTP to detection_candidates or hunting_candidates → detection-engineer and threat-hunter run in parallel on their respective outputs.</li>
-                <li><strong>264 Skills Across 7 Domains:</strong> digital-forensics (41), threat-hunting (58), threat-intelligence (52), incident-response (26), security-operations (28), soc-operations (35), threat-detection (7), plus 17 numbered skill families — all cross-referenced to their primary agent owner via a SKILLS-MAP that audits for orphaned skills on every agent change.</li>
-                <li><strong>Embedded Reference Library:</strong> SANS FOR508 "Know Evil" hunting baseline, FOR578 CTI tradecraft (ACH 8-step, Diamond Model, Kill Chain), DFIR toolkit cheatsheets (REMnux, Volatility/Rekall, Eric Zimmerman tools), purple-team emulation methodology, and log-source/query reference — loaded as agent context, not RAG retrieval.</li>
-                <li><strong>Scenario-Based Test Harness:</strong> Automated evaluation across 22 agents using realistic scenario prompts, scoring output completeness and domain accuracy — catching regressions when agents are modified.</li>
-                <li><strong>4 Defined Multi-Agent Workflows:</strong> CTI Triage Pipeline, Major Incident Response Chain, Hunt-to-Detection Closure Loop, and External Threat Profile Orchestration — each with mandatory structured handoffs and explicit gate-check routing between agents.</li>
-            </ul>
-            <h4>Outcome:</h4>
-            <ul>
-                <li>Deployed and validated end-to-end across all 6 functions; manually exercised the CTI pipeline against a real OilRig/APT34 MENA-region report confirming 18 TTPs extracted → 5 Sigma rules built → 11 hunt hypotheses generated on dense, real technical content.</li>
-                <li>SKILLS-MAP governance ensures zero orphaned skills — every removal is audited to confirm the skill has a remaining owner before it's removed, and stale cross-references in reference documents are patched immediately.</li>
-            </ul>
-            <a href="https://github.com/DashTX707/claude-cyber-defense-workspace" target="_blank" rel="noopener">View on GitHub</a>
-        </div>
-
-        <div class="project">
             <h3>Automated Weekly Threat Intelligence Pipeline</h3>
             <p><strong>Objective:</strong> Built a fully automated scheduled pipeline that fetches, triages, and operationalizes fresh threat intelligence reports weekly — producing structured Sigma rules and hunt hypotheses with zero manual analyst input per cycle and a mandatory human-review gate before any output reaches the main branch.</p>
             <p><strong>Tools &amp; Tech:</strong> Claude AI (scheduled cloud routine), Sigma, KQL, MITRE ATT&CK, GitHub (branch + draft PR governance), Python</p>
@@ -101,7 +80,7 @@
             </ul>
             <h4>Outcome:</h4>
             <ul>
-                <li>Validated end-to-end against a critical-sector financial institution in the KSA environment — producing a complete threat profile covering MENA-active APT groups, exposed assets, and risk framing relevant to the organization's actual external footprint.</li>
+                <li>Validated end-to-end against a critical-sector financial institution — producing a complete threat profile covering MENA-active APT groups, exposed assets, and risk framing relevant to the organization's actual external footprint.</li>
             </ul>
             <a href="https://github.com/DashTX707/cyber-threat-profiling" target="_blank" rel="noopener">View on GitHub</a>
         </div>

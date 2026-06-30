@@ -47,6 +47,112 @@
 
     <section id="projects" class="container">
         <h2>Projects</h2>
+
+        <div class="project">
+            <h3>AI-Augmented Cyber Defense Ecosystem</h3>
+            <p><strong>Objective:</strong> Designed and built a production-grade multi-agent AI system covering the full Defender's Advantage lifecycle — from threat intelligence and detection engineering through incident response, threat hunting, and governance — with 23 specialist agents, 264 operational skills, and an embedded SANS reference library.</p>
+            <p><strong>Tools &amp; Tech:</strong> Claude Code (claude-sonnet-4-6, claude-haiku-4-5), MITRE ATT&CK, Sigma, KQL, YARA, SANS FOR508/FOR578/FOR608/FOR572</p>
+            <h4>Architecture:</h4>
+            <ul>
+                <li><strong>6 Defender's Advantage Functions:</strong> Intelligence → Detect → Hunt → Respond → Validate → Mission Control — 23 specialist agents mapped to each function with explicit tool allowlists and structured JSON inter-agent handoffs.</li>
+                <li><strong>CTI Triage Pipeline:</strong> threat-intel-analyst extracts structured TTPs/IOCs from raw reports into schema-validated JSON → decision-agent (haiku model, narrow classifier) routes each TTP to detection_candidates or hunting_candidates → detection-engineer and threat-hunter run in parallel on their respective outputs.</li>
+                <li><strong>264 Skills Across 7 Domains:</strong> digital-forensics (41), threat-hunting (58), threat-intelligence (52), incident-response (26), security-operations (28), soc-operations (35), threat-detection (7), plus 17 numbered skill families — all cross-referenced to their primary agent owner via a SKILLS-MAP that audits for orphaned skills on every agent change.</li>
+                <li><strong>Embedded Reference Library:</strong> SANS FOR508 "Know Evil" hunting baseline, FOR578 CTI tradecraft (ACH 8-step, Diamond Model, Kill Chain), DFIR toolkit cheatsheets (REMnux, Volatility/Rekall, Eric Zimmerman tools), purple-team emulation methodology, and log-source/query reference — loaded as agent context, not RAG retrieval.</li>
+                <li><strong>Scenario-Based Test Harness:</strong> Automated evaluation across 22 agents using realistic scenario prompts, scoring output completeness and domain accuracy — catching regressions when agents are modified.</li>
+                <li><strong>4 Defined Multi-Agent Workflows:</strong> CTI Triage Pipeline, Major Incident Response Chain, Hunt-to-Detection Closure Loop, and External Threat Profile Orchestration — each with mandatory structured handoffs and explicit gate-check routing between agents.</li>
+            </ul>
+            <h4>Outcome:</h4>
+            <ul>
+                <li>Deployed and validated end-to-end across all 6 functions; manually exercised the CTI pipeline against a real OilRig/APT34 MENA-region report confirming 18 TTPs extracted → 5 Sigma rules built → 11 hunt hypotheses generated on dense, real technical content.</li>
+                <li>SKILLS-MAP governance ensures zero orphaned skills — every removal is audited to confirm the skill has a remaining owner before it's removed, and stale cross-references in reference documents are patched immediately.</li>
+            </ul>
+            <a href="https://github.com/DashTX707/claude-cyber-defense-workspace" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+
+        <div class="project">
+            <h3>Automated Weekly Threat Intelligence Pipeline</h3>
+            <p><strong>Objective:</strong> Built a fully automated scheduled pipeline that fetches, triages, and operationalizes fresh threat intelligence reports weekly — producing structured Sigma rules and hunt hypotheses with zero manual analyst input per cycle and a mandatory human-review gate before any output reaches the main branch.</p>
+            <p><strong>Tools &amp; Tech:</strong> Claude AI (scheduled cloud routine), Sigma, KQL, MITRE ATT&CK, GitHub (branch + draft PR governance), Python</p>
+            <h4>Pipeline Design:</h4>
+            <ul>
+                <li><strong>Sources Layer:</strong> 38 curated TI outlets — 35 global vendors/DFIR shops plus 3 MENA-dedicated sources (CTM360, Resecurity, Help AG) — checked weekly against a strict 7-day publication window; stale reports are excluded unconditionally.</li>
+                <li><strong>MENA-Region Prioritization:</strong> Up to 5 reports processed per cycle, ranked by relevance to the MENA region — aligning pipeline output with the operational focus of the KSA financial and critical-infrastructure environment.</li>
+                <li><strong>4-Stage Cascade (fully automated):</strong> threat-intel-analyst (TTP/IOC/confidence extraction → structured JSON) → decision-agent (routes each TTP: detection candidate vs. hunt candidate, based on observability and FP manageability) → detection-engineer + threat-hunter in parallel (Sigma/KQL rules + structured hunt hypotheses).</li>
+                <li><strong>Output Governance:</strong> Every run commits to a weekly/[date] branch and opens a draft PR — never pushes to main directly, never auto-merges. Empty weeks produce no PR. The exact routine prompt is version-controlled in WEEKLY-ROUTINE-PROMPT.md, making pipeline behavior fully auditable without touching any API config.</li>
+            </ul>
+            <h4>Proof-of-Concept Case — APT34/OilRig:</h4>
+            <ul>
+                <li>Manually exercised against Check Point Research's Veaty/Spearal/CacheHttp.dll report (APT34/OilRig targeting Iraqi government infrastructure, 2024-09-11): 18 TTPs extracted at medium confidence → 6 detection candidates produced (5 built as Sigma rules; 1 correctly declined because the candidate was a decaying IOC unsuitable for a durable rule) + 11 hunt hypotheses generated and honestly staged as inconclusive/continue-hunting with no live telemetry to query against.</li>
+                <li>Test run surfaced a gap in the scheduled routine (no regional weighting, no strict date window) that was corrected via PR #3 before automation went live.</li>
+            </ul>
+            <a href="https://github.com/DashTX707/cyber-defense-intel" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+
+        <div class="project">
+            <h3>External Threat Profile Orchestration</h3>
+            <p><strong>Objective:</strong> Designed a multi-agent OSINT pipeline that produces a Mandiant-structured external threat profile for any named organization — covering adversary threat landscape, externally visible attack surface, and coarse risk framing — using only public data, with no internal access to the target required.</p>
+            <p><strong>Tools &amp; Tech:</strong> Claude AI agents, MITRE ATT&CK Navigator, OSINT (passive DNS, certificate transparency, BGP data, web fingerprinting), CVE/EPSS/CISA KEV, FAIR risk quantification</p>
+            <h4>Pipeline Architecture:</h4>
+            <ul>
+                <li><strong>Stage 1 — attack-surface-analyst:</strong> Discovers external footprint, technology stack, and exposed infrastructure using passive OSINT only; back-fills sector and region if not provided.</li>
+                <li><strong>Stage 2 (parallel) — threat-intel-analyst + vulnerability-management-advisor:</strong> threat-intel-analyst profiles the active threat landscape (which actors target this sector/region, with which TTPs, mapped to ATT&CK); vulnerability-management-advisor cross-references the fingerprinted technology stack against CVE/EPSS/CISA KEV.</li>
+                <li><strong>Stage 3 — cyber-risk-advisor:</strong> Synthesizes findings into a coarse risk/impact framing using FAIR methodology, explicitly labeled as inferred from public data only — never overstated as an internal assessment.</li>
+                <li><strong>Output structure:</strong> Mandiant Figure 6 three-circle model (Threat Landscape ∩ Organizational Profile ∩ Risk &amp; Impact) with BLUF discipline and calibrated confidence language throughout.</li>
+            </ul>
+            <h4>Outcome:</h4>
+            <ul>
+                <li>Validated end-to-end against SIDF (Saudi Industrial Development Fund) — a critical-sector financial institution in the KSA environment — producing a complete threat profile covering MENA-active APT groups, exposed assets, and risk framing relevant to the organization's actual external footprint.</li>
+            </ul>
+            <a href="https://github.com/DashTX707/cyber-threat-profiling" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+
+        <div class="project">
+            <h3>Hunt-to-Detection Closure Loop</h3>
+            <p><strong>Objective:</strong> Built a structured three-agent workflow that prevents threat-hunting findings from dead-ending as one-off write-ups — routing threat-hunter JSON output through a gate-check into detection-engineer, then validating the resulting rule with purple-team-advisor before closing the loop.</p>
+            <p><strong>Tools &amp; Tech:</strong> Claude AI agents (threat-hunter, detection-engineer, purple-team-advisor), Sigma, KQL, MITRE ATT&CK, Atomic Red Team / MITRE CALDERA</p>
+            <h4>Workflow:</h4>
+            <ul>
+                <li><strong>Gate-check routing:</strong> Inspects threat-hunter's recommended_next_step field — only findings marked handoff_to_detection_engineering continue; continue_hunting routes back to threat-hunter; escalate_to_ir triggers the Major Incident Response Chain (active compromise, not a detection gap).</li>
+                <li><strong>Detection Engineering (Step 2):</strong> detection-engineer receives the hunt's ttps, data_sources, and query_or_method fields — already in the shape it accepts from the CTI Triage Pipeline, no reformatting needed. Produces a Sigma/KQL rule, or an explicit visibility-gap flag if the behavior isn't yet observable (an unfireable rule is worse than an honest gap).</li>
+                <li><strong>Validation (Step 3):</strong> purple-team-advisor simulates the exact technique using Atomic Red Team or equivalent in a non-production environment and confirms the SIEM/EDR actually alerts — "we built a rule" is not the same as "we confirmed it fires."</li>
+                <li><strong>Failure Handling (Step 4):</strong> Distinguishes a logic gap (rule logic is wrong — detection-engineer fixes and re-tests once) from a pipeline/ingestion gap (log source or delay issue — document and close; looping detection-engineer against a problem one level below where it operates only creates false closure).</li>
+                <li><strong>Closure Notification (Step 5):</strong> Logs validated status back to threat-hunter so the next hunt cycle deprioritizes re-hunting the same TTP and redirects effort to the next visibility gap.</li>
+            </ul>
+            <a href="https://github.com/DashTX707/hunt-to-detection-closure-loop" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+
+        <div class="project">
+            <h3>Threat Hunting Queries & MITRE ATT&CK Detection Library</h3>
+            <p><strong>Objective:</strong> Developed and operationalized a library of threat-hunting queries and detection rules mapped to MITRE ATT&CK tactics and techniques, enabling proactive APT detection across enterprise environments.</p>
+            <p><strong>Tools Used:</strong> IBM QRadar, Splunk, Elastic Stack (ELK), CrowdStrike, Sigma, MITRE ATT&CK Navigator</p>
+            <h4>Methodology:</h4>
+            <ul>
+                <li><strong>"Know Normal to Hunt Evil" Baseline (SANS FOR508):</strong> Built per-process baselines covering expected parent/path/account/instance-count/start-time for core OS processes (lsass, svchost, explorer, winlogon, etc.) — deviations from baseline (wrong parent, misspelled name, wrong path) surface masquerading malware and process injection attempts without relying on signature matching.</li>
+                <li><strong>Three-Tier Hypothesis Framework:</strong> Structured hunt missions across three tiers — intelligence-led (actor TTP reports drive the hypothesis), TTP-driven (ATT&CK technique selected, hunt designs the data query), and anomaly-based (statistical deviation from established behavioral baseline). Each hunt produces a structured JSON output with hypothesis, ttps, data_sources, query_or_method, result, findings, and recommended_next_step.</li>
+                <li><strong>ATT&CK Coverage Gap Analysis:</strong> Used MITRE ATT&CK Navigator to map existing detection rules against the full technique matrix, identifying blind spots by tactic — prioritizing coverage expansion in Initial Access, Lateral Movement, and Credential Access where APT dwell time is highest.</li>
+                <li><strong>ATT&CK-Mapped Query Development:</strong> Created custom Sigma rules and SIEM correlation queries targeting high-value techniques: Kerberoasting (T1558.003), DCSync (T1003.006), Pass-the-Hash (T1550.002), WMI persistence (T1047), Golden Ticket (T1558.001), scheduled task abuse (T1053.005), PowerShell execution (T1059.001), and lateral movement via PsExec/Scheduled Tasks/WMI.</li>
+                <li><strong>Telemetry Correlation:</strong> Correlated Windows event logs (4624/4625/4648/4698/4702/4768/4769), Sysmon (Event IDs 1/3/7/8/10/11/13), EDR telemetry, and network flow data — building multi-source detection logic that degrades gracefully when individual log sources are unavailable.</li>
+                <li><strong>Hunt-to-Detection Handoff:</strong> Formalized findings routing — hunt output classified as finding + handoff_to_detection_engineering triggers structured handoff to detection engineering; escalate_to_ir routes directly to incident response; continue_hunting returns to the hunt queue without generating noise.</li>
+                <li><strong>Detection Tuning:</strong> Iteratively refined rules against production telemetry to reduce false positives while broadening detection coverage — scoring each candidate on Coverage, Durability, Complexity, Confidence, FP rate, and Actionable content before promoting to production.</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3>SOC Automation & Incident Response Playbooks</h3>
+            <p><strong>Objective:</strong> Built automated incident-response workflows and a structured multi-phase IR chain aligned to NIST SP 800-61 and SANS PICERL, standardizing detection through closure — including mandatory post-incident detection validation to confirm exposed gaps are actually fixed before an incident is closed.</p>
+            <p><strong>Tools Used:</strong> IBM Resilient SOAR, Python, Bash, QRadar, MITRE ATT&CK</p>
+            <h4>Methodology:</h4>
+            <ul>
+                <li><strong>Classification-First Approach:</strong> All incidents are classified (P1–P4) before any downstream action is triggered — severity drives SITREP cadence, escalation path, and whether the full chain is warranted. A P4/informational finding exits the chain at Step 1; never runs downstream agents against noise.</li>
+                <li><strong>Multi-Phase IR Chain (NIST SP 800-61 + SANS PICERL aligned):</strong> IR Coordinator (classify, open SITREP) → parallel DFIR forensics + artifact analysis (timeline, root cause, persistence/lateral-movement path) → SOC leadership escalation (confirm/upgrade severity, executive bridge decision) → BC/DR activation (conditional — only on critical system down, backups targeted, or ransomware confirmed) → IR Coordinator PIR (root cause, timeline, remediation, lessons learned) → purple-team validation → executive reporting.</li>
+                <li><strong>Mandatory Detection Validation Step:</strong> purple-team-advisor runs the confirmed TTPs from forensic findings through its simulate-and-validate methodology before the incident is closed — testing whether existing detections would have caught the technique, or confirming new rules built in response to the gap actually fire. This step is not skippable under closure pressure: an incident that closes without confirming the detection gap is fixed is a recurrence waiting to happen.</li>
+                <li><strong>Playbook Development:</strong> Created IR playbooks for phishing, ransomware, lateral movement, and identity compromise — each mapped to MITRE ATT&CK tactics/techniques with explicit containment actions, evidence-collection checklists, and SOAR-triggerable decision points.</li>
+                <li><strong>SOAR Integration:</strong> Automated alert triage, IOC enrichment, and containment actions using IBM Resilient SOAR — reducing manual analyst steps and accelerating MTTR.</li>
+                <li><strong>Python Scripting:</strong> Developed scripts for log parsing, IOC extraction, and ticket generation to eliminate redundant SOC workflows and feed structured data back into the detection feedback loop.</li>
+            </ul>
+            <a href="https://github.com/DashTX707/major-incident-response-chain" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+
         <div class="project">
             <h3>Comprehensive Vulnerability Assessment</h3>
             <p><strong>Objective:</strong> Conducted a vulnerability assessment on local and external-facing assets to identify and mitigate security risks, leveraging both passive and active reconnaissance techniques.</p>
@@ -65,30 +171,6 @@
                 <li>Successfully uncovered 8 critical vulnerabilities, including exposed sensitive directories, SQL injection, XSS, and file upload vulnerabilities in web applications.</li>
                 <li>Provided a detailed report with prioritized mitigation strategies, recommending actions such as patch management, access control updates, and enhanced monitoring.</li>
                 <li>Strengthened the security posture of the organization by resolving all critical issues and improving overall resilience against potential attacks.</li>
-            </ul>
-        </div>
-        <div class="project">
-            <h3>Threat Hunting Queries & MITRE ATT&CK Detection Library</h3>
-            <p><strong>Objective:</strong> Developed and operationalized a library of threat-hunting queries and detection rules mapped to MITRE ATT&CK tactics and techniques, enabling proactive APT detection across enterprise environments.</p>
-            <p><strong>Tools Used:</strong> IBM QRadar, Splunk, Elastic Stack (ELK), CrowdStrike, Sigma, MITRE ATT&CK Navigator</p>
-            <h4>Methodology:</h4>
-            <ul>
-                <li><strong>ATT&CK-Mapped Query Development:</strong> Created custom Sigma rules and SIEM correlation queries aligned to specific ATT&CK techniques (e.g., T1059 Command Scripting, T1078 Valid Accounts, T1566 Phishing).</li>
-                <li><strong>Telemetry Analysis:</strong> Analyzed Windows event logs, Sysmon, EDR telemetry, and network flows to detect anomalies and indicators of compromise (IOCs).</li>
-                <li><strong>Hypothesis-Driven Hunting:</strong> Designed structured hunt missions based on threat intelligence reports and emerging adversary TTPs to proactively uncover Advanced Persistent Threats (APTs).</li>
-                <li><strong>Detection Tuning:</strong> Iteratively refined rules to reduce false positives while broadening detection coverage across the monitored estate.</li>
-            </ul>
-        </div>
-        <div class="project">
-            <h3>SOC Automation & Incident Response Playbooks</h3>
-            <p><strong>Objective:</strong> Built automated incident-response workflows and documented playbooks to standardize detection, reduce analyst workload, and accelerate mean time to respond (MTTR).</p>
-            <p><strong>Tools Used:</strong> IBM Resilient SOAR, Python, Bash, QRadar, MITRE ATT&CK</p>
-            <h4>Methodology:</h4>
-            <ul>
-                <li><strong>Playbook Development:</strong> Created incident response playbooks for common attack scenarios (phishing, ransomware, lateral movement) mapped to MITRE ATT&CK tactics and techniques.</li>
-                <li><strong>SOAR Integration:</strong> Automated alert triage, IOC enrichment, and containment actions using IBM Resilient SOAR, significantly reducing manual analyst steps and response time.</li>
-                <li><strong>Python Scripting:</strong> Developed Python scripts to automate investigative tasks including log parsing, IOC extraction, and ticket generation — streamlining redundant SOC workflows.</li>
-                <li><strong>Continuous Improvement:</strong> Regularly updated playbooks based on post-incident reviews, gap analyses, and new threat intelligence to ensure operational readiness.</li>
             </ul>
         </div>
     </section>

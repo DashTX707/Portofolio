@@ -298,21 +298,31 @@ footer {
   background: #020408;
   color: var(--text-dim);
   text-align: center;
-  padding: 14px 20px;
+  padding: 12px 20px;
   position: fixed;
-  width: 100%;
+  left: 0;
+  right: 0;
   bottom: 0;
   border-top: 1px solid var(--accent-green);
   box-shadow: 0 -4px 24px rgba(0,255,159,0.1);
   font-size: 0.88em;
   z-index: 100;
+  line-height: 1.4;
+}
+
+footer p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 footer a {
   color: var(--accent-blue);
   text-decoration: none;
-  margin: 0 8px;
+  margin: 0 10px;
   transition: color 0.2s, text-shadow 0.2s;
+  display: inline-block;
 }
 
 footer a:hover {
@@ -327,4 +337,7 @@ footer a:hover {
   header h1 { font-size: 1.5em; }
   section { padding: 24px 20px; }
   .container { width: 94%; }
+  footer p { white-space: normal; }
+  footer a { margin: 0 6px; }
+  body { padding-bottom: 100px; }
 }

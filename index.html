@@ -51,7 +51,7 @@
         <div class="project">
             <h3>Automated Weekly Threat Intelligence Pipeline</h3>
             <p><strong>Objective:</strong> Built a fully automated scheduled pipeline that fetches, triages, and operationalizes fresh threat intelligence reports weekly — producing structured Sigma rules and hunt hypotheses with zero manual analyst input per cycle and a mandatory human-review gate before any output reaches the main branch.</p>
-            <p><strong>Tools &amp; Tech:</strong> Claude AI (scheduled cloud routine), Sigma, KQL, MITRE ATT&CK, GitHub (branch + draft PR governance), Python</p>
+            <p><strong>Tools &amp; Tech:</strong> AI automation platform (scheduled cloud routine), Sigma, KQL, MITRE ATT&CK, GitHub (branch + draft PR governance), Python</p>
             <h4>Pipeline Design:</h4>
             <ul>
                 <li><strong>Sources Layer:</strong> 38 curated TI outlets — 35 global vendors/DFIR shops plus 3 MENA-dedicated sources (CTM360, Resecurity, Help AG) — checked weekly against a strict 7-day publication window; stale reports are excluded unconditionally.</li>
@@ -70,7 +70,7 @@
         <div class="project">
             <h3>External Threat Profile Orchestration</h3>
             <p><strong>Objective:</strong> Designed a multi-agent OSINT pipeline that produces a Mandiant-structured external threat profile for any named organization — covering adversary threat landscape, externally visible attack surface, and coarse risk framing — using only public data, with no internal access to the target required.</p>
-            <p><strong>Tools &amp; Tech:</strong> Claude AI agents, MITRE ATT&CK Navigator, OSINT (passive DNS, certificate transparency, BGP data, web fingerprinting), CVE/EPSS/CISA KEV, FAIR risk quantification</p>
+            <p><strong>Tools &amp; Tech:</strong> Multi-agent AI orchestration, MITRE ATT&CK Navigator, OSINT (passive DNS, certificate transparency, BGP data, web fingerprinting), CVE/EPSS/CISA KEV, FAIR risk quantification</p>
             <h4>Pipeline Architecture:</h4>
             <ul>
                 <li><strong>Stage 1 — attack-surface-analyst:</strong> Discovers external footprint, technology stack, and exposed infrastructure using passive OSINT only; back-fills sector and region if not provided.</li>
@@ -88,7 +88,7 @@
         <div class="project">
             <h3>Hunt-to-Detection Closure Loop</h3>
             <p><strong>Objective:</strong> Built a structured three-agent workflow that prevents threat-hunting findings from dead-ending as one-off write-ups — routing threat-hunter JSON output through a gate-check into detection-engineer, then validating the resulting rule with purple-team-advisor before closing the loop.</p>
-            <p><strong>Tools &amp; Tech:</strong> Claude AI agents (threat-hunter, detection-engineer, purple-team-advisor), Sigma, KQL, MITRE ATT&CK, Atomic Red Team / MITRE CALDERA</p>
+            <p><strong>Tools &amp; Tech:</strong> Multi-agent AI orchestration (threat-hunter, detection-engineer, purple-team-advisor), Sigma, KQL, MITRE ATT&CK, Atomic Red Team / MITRE CALDERA</p>
             <h4>Workflow:</h4>
             <ul>
                 <li><strong>Gate-check routing:</strong> Inspects threat-hunter's recommended_next_step field — only findings marked handoff_to_detection_engineering continue; continue_hunting routes back to threat-hunter; escalate_to_ir triggers the Major Incident Response Chain (active compromise, not a detection gap).</li>

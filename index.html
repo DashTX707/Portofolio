@@ -49,9 +49,9 @@
         <h2>Projects</h2>
 
         <div class="project">
-            <h3>MENA Threat Actor Tracker — Multi-Agent CTI Repository</h3>
+            <h3>MENA Threat Actor Tracker — Multi-Stage CTI Repository</h3>
             <p><strong>Objective:</strong> Built and maintain a structured, citation-backed threat-actor tracking repository for the MENA region, combining OSINT research, MITRE ATT&CK TTP mapping, and Sigma detection-coverage auditing into one reproducible pipeline — with a scheduled automation layer that keeps it current without re-researching the entire threat landscape every cycle.</p>
-            <p><strong>Tools &amp; Tech:</strong> Multi-agent orchestration (CTI research, detection engineering), MITRE ATT&CK &amp; Navigator, Sigma, Python/openpyxl, scheduled cloud routine automation, Excel/VLOOKUP data modeling</p>
+            <p><strong>Tools &amp; Tech:</strong> Multi-stage orchestration (CTI research, detection engineering), MITRE ATT&CK &amp; Navigator, Sigma, Python/openpyxl, scheduled cloud routine automation, Excel/VLOOKUP data modeling</p>
             <h4>Repository Structure:</h4>
             <ul>
                 <li><strong>Threat-actor tracking:</strong> 29 APT/state-sponsored groups and 25 ransomware groups with documented MENA targeting, each row citing a real, verifiable public source and tagged by sourcing confidence (high/medium/low) — revalidated via an independent fact-check pass that caught and corrected several sourcing errors before publication.</li>
@@ -61,21 +61,21 @@
             </ul>
             <h4>Notable Engineering Decisions:</h4>
             <ul>
-                <li><strong>Trust but verify, always:</strong> An independent detection-engineer revalidation pass on Sigma coverage classifications caught a 16% error rate in the first-pass agent output — every coverage number was then recomputed deterministically rather than trusted from a single agent run.</li>
-                <li><strong>Designed around a known automation failure mode:</strong> A sibling routine's stored-prompt-vs-repo-file drift (editing a prompt file didn't update the live schedule) was avoided here by making the routine's stored prompt a thin pointer to a version-controlled file, so logic changes take effect automatically on the next run.</li>
+                <li><strong>Trust but verify, always:</strong> An independent detection-engineer revalidation pass on Sigma coverage classifications caught a 16% error rate in the first-pass output — every coverage number was then recomputed deterministically rather than trusted from a single pass.</li>
+                <li><strong>Designed around a known automation failure mode:</strong> A sibling routine's stored-config-vs-repo-file drift (editing a config file didn't update the live schedule) was avoided here by making the routine's stored config a thin pointer to a version-controlled file, so logic changes take effect automatically on the next run.</li>
             </ul>
         </div>
 
         <div class="project">
             <h3>Automated Weekly Threat Intelligence Pipeline</h3>
             <p><strong>Objective:</strong> Built a fully automated scheduled pipeline that fetches, triages, and operationalizes fresh threat intelligence reports weekly — producing structured Sigma rules and hunt hypotheses with zero manual analyst input per cycle and a mandatory human-review gate before any output reaches the main branch.</p>
-            <p><strong>Tools &amp; Tech:</strong> AI automation platform (scheduled cloud routine), Sigma, KQL, MITRE ATT&CK, GitHub (branch + draft PR governance), Python</p>
+            <p><strong>Tools &amp; Tech:</strong> Automated orchestration platform (scheduled cloud routine), Sigma, KQL, MITRE ATT&CK, GitHub (branch + draft PR governance), Python</p>
             <h4>Pipeline Design:</h4>
             <ul>
                 <li><strong>Sources Layer:</strong> 38 curated TI outlets — 35 global vendors/DFIR shops plus 3 MENA-dedicated sources (CTM360, Resecurity, Help AG) — checked weekly against a strict 7-day publication window; stale reports are excluded unconditionally.</li>
                 <li><strong>MENA-Region Prioritization:</strong> Up to 5 reports processed per cycle, ranked by MENA-region relevance — aligning pipeline output with the operational focus of the target environment.</li>
                 <li><strong>4-Stage Automated Cascade:</strong> TTP/IOC extraction (structured JSON with confidence scoring) → automated routing classifier (separates detection candidates from hunt candidates based on observability and FP manageability) → detection rule building + hunt hypothesis generation running in parallel.</li>
-                <li><strong>Output Governance:</strong> Every run commits to a dated branch and opens a draft PR — never pushes to main directly, never auto-merges. Empty weeks produce no PR. The pipeline prompt is version-controlled, making behavior fully auditable without touching any API config.</li>
+                <li><strong>Output Governance:</strong> Every run commits to a dated branch and opens a draft PR — never pushes to main directly, never auto-merges. Empty weeks produce no PR. The pipeline logic is version-controlled, making behavior fully auditable without touching any config.</li>
             </ul>
             <h4>Proof-of-Concept Case — APT34/OilRig:</h4>
             <ul>
@@ -87,7 +87,7 @@
         <div class="project">
             <h3>External Threat Profile Orchestration</h3>
             <p><strong>Objective:</strong> Designed a multi-stage OSINT pipeline that produces a Mandiant-structured external threat profile for any named organization — covering adversary threat landscape, externally visible attack surface, and coarse risk framing — using only public data, with no internal access to the target required.</p>
-            <p><strong>Tools &amp; Tech:</strong> Multi-stage AI orchestration, MITRE ATT&CK Navigator, OSINT (passive DNS, certificate transparency, BGP data, web fingerprinting), CVE/EPSS/CISA KEV, FAIR risk quantification</p>
+            <p><strong>Tools &amp; Tech:</strong> Multi-stage automation pipeline, MITRE ATT&CK Navigator, OSINT (passive DNS, certificate transparency, BGP data, web fingerprinting), CVE/EPSS/CISA KEV, FAIR risk quantification</p>
             <h4>Pipeline Architecture:</h4>
             <ul>
                 <li><strong>Stage 1 — Attack Surface Mapping:</strong> Discovers external footprint, technology stack, and exposed infrastructure using passive OSINT only; back-fills sector and region context if not provided.</li>
@@ -104,7 +104,7 @@
         <div class="project">
             <h3>Hunt-to-Detection Closure Loop</h3>
             <p><strong>Objective:</strong> Built a structured automated workflow that prevents threat-hunting findings from dead-ending as one-off write-ups — routing confirmed hunt findings through detection engineering, then validating the resulting rule with a purple team simulation before closing the loop.</p>
-            <p><strong>Tools &amp; Tech:</strong> Multi-stage AI orchestration, Sigma, KQL, MITRE ATT&CK, Atomic Red Team / MITRE CALDERA</p>
+            <p><strong>Tools &amp; Tech:</strong> Multi-stage automation pipeline, Sigma, KQL, MITRE ATT&CK, Atomic Red Team / MITRE CALDERA</p>
             <h4>Workflow:</h4>
             <ul>
                 <li><strong>Gate-check routing:</strong> Each hunt finding is evaluated before progressing — only findings confirmed repeatable and observable continue to rule-building; active compromise indicators are escalated directly to incident response instead.</li>

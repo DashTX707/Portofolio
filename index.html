@@ -49,9 +49,9 @@
         <h2>Projects</h2>
 
         <div class="project">
-            <h3>MENA Threat Actor Tracker — Multi-Agent CTI Repository</h3>
+            <h3>MENA Threat Actor Tracker — Multi-Stage CTI Repository</h3>
             <p><strong>Objective:</strong> Built and maintain a structured, citation-backed threat-actor tracking repository for the MENA region, combining OSINT research, MITRE ATT&CK TTP mapping, and Sigma detection-coverage auditing into one reproducible pipeline — with a scheduled automation layer that keeps it current without re-researching the entire threat landscape every cycle.</p>
-            <p><strong>Tools &amp; Tech:</strong> Multi-agent orchestration (CTI research, detection engineering), MITRE ATT&CK &amp; Navigator, Sigma, Python/openpyxl, scheduled cloud routine automation, Excel/VLOOKUP data modeling</p>
+            <p><strong>Tools &amp; Tech:</strong> Multi-stage orchestration (CTI research, detection engineering), MITRE ATT&CK &amp; Navigator, Sigma, Python/openpyxl, scheduled cloud routine automation, Excel/VLOOKUP data modeling</p>
             <h4>Repository Structure:</h4>
             <ul>
                 <li><strong>Threat-actor tracking:</strong> 29 APT/state-sponsored groups and 25 ransomware groups with documented MENA targeting, each row citing a real, verifiable public source and tagged by sourcing confidence (high/medium/low) — revalidated via an independent fact-check pass that caught and corrected several sourcing errors before publication.</li>
@@ -61,8 +61,8 @@
             </ul>
             <h4>Notable Engineering Decisions:</h4>
             <ul>
-                <li><strong>Trust but verify, always:</strong> An independent detection-engineer revalidation pass on Sigma coverage classifications caught a 16% error rate in the first-pass agent output — every coverage number was then recomputed deterministically rather than trusted from a single agent run.</li>
-                <li><strong>Designed around a known automation failure mode:</strong> A sibling routine's stored-prompt-vs-repo-file drift (editing a prompt file didn't update the live schedule) was avoided here by making the routine's stored prompt a thin pointer to a version-controlled file, so logic changes take effect automatically on the next run.</li>
+                <li><strong>Trust but verify, always:</strong> An independent detection-engineer revalidation pass on Sigma coverage classifications caught a 16% error rate in the first-pass output — every coverage number was then recomputed deterministically rather than trusted from a single pass.</li>
+                <li><strong>Designed around a known automation failure mode:</strong> A sibling routine's stored-config-vs-repo-file drift (editing a config file didn't update the live schedule) was avoided here by making the routine's stored config a thin pointer to a version-controlled file, so logic changes take effect automatically on the next run.</li>
             </ul>
         </div>
 

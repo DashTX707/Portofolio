@@ -1,227 +1,1170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ibrahim Abdl-Razik | Threat Detection & Threat Intelligence Specialist</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibrahim Abdl-Razik — Threat Detection & Intelligence Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Syne:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #0A0C0F;
+    --paper:   #F0EDE6;
+    --tan:     #C8B89A;
+    --slate:   #1C2228;
+    --radar:   #4A7C8E;
+    --ops:     #2C3E2D;
+    --dim:     #6B7280;
+    --serif:   'Cormorant Garamond', serif;
+    --mono:    'IBM Plex Mono', monospace;
+    --sans:    'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ───────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 3rem;
+    background: rgba(10,12,15,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,184,154,0.1);
+  }
+
+  .nav-id {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tan);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--paper); }
+
+  /* ── HERO ───────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+
+  .hero-signal {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5rem 3rem 5rem 3rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--radar);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--radar);
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--tan);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--tan);
+    margin-bottom: 3rem;
+    line-height: 1.4;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left: 1px solid rgba(200,184,154,0.2);
+    padding-left: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero-meta span {
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-meta strong {
+    color: var(--tan);
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--radar);
+    border-color: var(--radar);
+    color: var(--paper);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--radar);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border-color: rgba(200,184,154,0.3);
+    color: var(--tan);
+  }
+  .btn-ghost:hover {
+    border-color: var(--tan);
+    color: var(--paper);
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 5rem 3rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    text-align: right;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--paper);
+  }
+
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 0.25rem;
+  }
+
+  /* Animated radar sweep */
+  .signal-line {
+    animation: sweep 6s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  @keyframes sweep {
+    0%   { opacity: 0.03; transform: scaleY(0.8); }
+    50%  { opacity: 0.09; transform: scaleY(1.1); }
+    100% { opacity: 0.03; transform: scaleY(0.8); }
+  }
+
+  .signal-line:nth-child(2) { animation-delay: 1.2s; }
+  .signal-line:nth-child(3) { animation-delay: 2.4s; }
+  .signal-line:nth-child(4) { animation-delay: 0.6s; }
+
+  /* ── SECTION SHARED ─────────────────────────────────── */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(200,184,154,0.15);
+  }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--radar);
+    padding-top: 0.6rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--tan);
+  }
+
+  /* ── ABOUT ─────────────────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-body p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(240,237,230,0.8);
+    margin-bottom: 1.5rem;
+    font-family: var(--mono);
+    font-weight: 300;
+  }
+
+  .about-body p:last-child { margin-bottom: 0; }
+
+  .about-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .aside-block {
+    border-left: 2px solid var(--radar);
+    padding-left: 1.5rem;
+  }
+
+  .aside-block-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--radar);
+    margin-bottom: 0.75rem;
+  }
+
+  .aside-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .aside-block ul li {
+    font-size: 12px;
+    color: var(--tan);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .aside-block ul li::before {
+    content: '—';
+    color: var(--dim);
+    flex-shrink: 0;
+  }
+
+  /* ── EXPERIENCE ─────────────────────────────────────── */
+  .experience-section {
+    background: var(--slate);
+    max-width: 100%;
+    padding: 6rem 0;
+  }
+
+  .experience-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .exp-entry {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(200,184,154,0.08);
+  }
+
+  .exp-entry:last-child { border-bottom: none; }
+
+  .exp-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.2rem;
+  }
+
+  .exp-date {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--radar);
+  }
+
+  .exp-location {
+    font-size: 11px;
+    color: var(--dim);
+    font-style: italic;
+  }
+
+  .exp-content {}
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-org {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 1.25rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .exp-bullets li {
+    font-size: 13px;
+    color: rgba(240,237,230,0.75);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--radar);
+    font-size: 14px;
+  }
+
+  /* ── SKILLS / CAPABILITIES ──────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .skill-card {
+    background: var(--slate);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--radar);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .skill-card:hover { background: #222932; }
+  .skill-card:hover::after { transform: scaleX(1); }
+
+  .skill-card-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--radar);
+    margin-bottom: 1rem;
+  }
+
+  .skill-card-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: var(--paper);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+  }
+
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--tan);
+    border: 1px solid rgba(200,184,154,0.25);
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── CERTIFICATIONS ─────────────────────────────────── */
+  .certs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .cert-row {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: var(--slate);
+    transition: background 0.2s;
+  }
+
+  .cert-row:hover { background: #222932; }
+
+  .cert-issuer {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--radar);
+  }
+
+  .cert-name {
+    font-size: 13px;
+    color: var(--paper);
+    font-weight: 300;
+  }
+
+  .cert-year {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+    text-align: right;
+  }
+
+  /* ── TOOLS MATRIX ───────────────────────────────────── */
+  .tools-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 1px;
+  }
+
+  .tool-item {
+    background: var(--slate);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .tool-item:hover { background: #222932; }
+
+  .tool-name {
+    font-size: 11px;
+    color: var(--tan);
+    display: block;
+    letter-spacing: 0.03em;
+  }
+
+  .tool-category {
+    font-family: var(--sans);
+    font-size: 9px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  /* ── CONTACT ────────────────────────────────────────── */
+  .contact-section {
+    background: var(--slate);
+    max-width: 100%;
+    padding: 6rem 0;
+  }
+
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .contact-headline {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .contact-headline em {
+    font-style: italic;
+    color: var(--tan);
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(200,184,154,0.12);
+    text-decoration: none;
+    transition: all 0.2s;
+    color: var(--paper);
+  }
+
+  .contact-link:hover {
+    border-color: var(--radar);
+    background: rgba(74,124,142,0.06);
+  }
+
+  .contact-link-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--radar);
+    min-width: 80px;
+  }
+
+  .contact-link-value {
+    font-size: 12px;
+    color: var(--tan);
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────── */
+  footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(200,184,154,0.1);
+  }
+
+  footer p {
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-labs {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-labs a {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-labs a:hover { color: var(--tan); }
+
+  /* ── DIVIDER ─────────────────────────────────────────── */
+  .full-divider {
+    border: none;
+    border-top: 1px solid rgba(200,184,154,0.08);
+    margin: 0;
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 70px; }
+    .hero-left { padding: 4rem 1.5rem 2rem; justify-content: flex-start; margin-top: 2rem; }
+    .hero-right { padding: 2rem 1.5rem 4rem; align-items: flex-start; }
+    .hero-stat-block { flex-direction: row; flex-wrap: wrap; gap: 2rem; text-align: left; }
+    .stat-num { font-size: 2.5rem; }
+
+    section { padding: 4rem 1.5rem; }
+    .section-header { grid-template-columns: 1fr; gap: 1rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    .experience-inner { padding: 0 1.5rem; }
+    .exp-entry { grid-template-columns: 1fr; gap: 1rem; }
+
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+
+    .cert-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .cert-year { text-align: left; }
+
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem; }
+
+    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+
+    .hero-signal { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal-line { animation: none; opacity: 0.05; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Hi, I'm Ibrahim Abdl-Razik 👋</h1>
-            <p>🛡️ Threat Detection & Threat Intelligence Specialist | Senior SOC Consultant — 5+ years in cybersecurity</p>
-            <p>🎓 B.Sc. Computer Science, Mansoura University (2017) | Military Signals Intelligence background</p>
-            <p>📜 Training: SANS FOR508/608, SpecterOps Tradecraft Analysis, Applied Network Defense, TCM Security</p>
-            <p>🕵️‍♂️ MITRE ATT&CK Defender™ certified — applying ATT&CK for threat intelligence, SOC assessments &amp; threat hunting</p>
-            <p>💻 Previously: BDC (Banque Du Caire), COR (Coordinates Middle East by GBM), Securenass</p>
-            <p>🌐 Currently: SOC Consultant at SIDF (Saudi Industrial Development Fund), Riyadh, KSA</p>
-            <p>🔗 <a href="https://tryhackme.com/p/DashTX">TryHackMe (DashTX)</a> | <a href="https://cyberdefenders.org/p/DashTX">CyberDefenders (DashTX)</a></p>
-        </div>
-    </header>
 
-    <section id="about" class="container">
-        <h2>About Me</h2>
-        <p>Cyber Threat Detection and Threat Intelligence specialist with over five years of dedicated cybersecurity experience across Security Operations Center (SOC) operations, detection engineering, threat hunting, and digital forensics for banking, financial, and critical-infrastructure environments — backed by a military signals-intelligence background.</p>
-        <p>Skilled in developing custom detection logic (Sigma, YARA, SIEM correlation rules), mapping adversary Tactics, Techniques, and Procedures (TTPs) to the MITRE ATT&CK framework, and operationalizing Cyber Threat Intelligence (CTI) to drive proactive defense. Hands-on across leading SIEM, SOAR, EDR/XDR, and NDR platforms, with a record of reducing false positives, expanding detection coverage, and aligning operations with ISO 27001, NIST, CIS, and Saudi National Cybersecurity Authority (NCA) requirements (ECC-1:2018, CSCC-1:2019).</p>
-    </section>
+<!-- NAV -->
+<nav>
+  <span class="nav-id">Ibrahim Abdl-Razik</span>
+  <ul class="nav-links">
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#experience">Career</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#certifications">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <section id="skills" class="container">
-        <h2>Skills</h2>
+<!-- HERO -->
+<div class="hero">
+
+  <!-- Animated signal / radar background -->
+  <svg class="hero-signal" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path class="signal-line" d="M0,450 C80,420 120,480 200,440 C280,400 320,470 400,450 C480,430 520,490 600,445 C680,400 720,475 800,455 C880,435 920,485 1000,450 C1080,415 1120,470 1200,448 C1280,426 1360,465 1440,450" fill="none" stroke="#4A7C8E" stroke-width="1.5"/>
+    <path class="signal-line" d="M0,460 C100,430 140,500 240,455 C340,410 380,490 480,460 C580,430 620,500 720,460 C820,420 860,500 960,460 C1060,420 1100,485 1200,460 C1300,435 1380,475 1440,460" fill="none" stroke="#4A7C8E" stroke-width="0.8"/>
+    <path class="signal-line" d="M0,435 C60,415 100,460 180,438 C260,416 300,462 400,438 C500,414 540,460 640,436 C740,412 780,460 880,438 C980,416 1020,458 1120,438 C1220,418 1380,450 1440,438" fill="none" stroke="#C8B89A" stroke-width="0.5"/>
+    <!-- Horizontal grid lines (dossier paper effect) -->
+    <line x1="0" y1="150" x2="1440" y2="150" stroke="#C8B89A" stroke-width="0.3" stroke-dasharray="4,60" opacity="0.2"/>
+    <line x1="0" y1="300" x2="1440" y2="300" stroke="#C8B89A" stroke-width="0.3" stroke-dasharray="4,60" opacity="0.2"/>
+    <line x1="0" y1="600" x2="1440" y2="600" stroke="#C8B89A" stroke-width="0.3" stroke-dasharray="4,60" opacity="0.2"/>
+    <line x1="0" y1="750" x2="1440" y2="750" stroke="#C8B89A" stroke-width="0.3" stroke-dasharray="4,60" opacity="0.2"/>
+    <!-- Vertical edge marks -->
+    <line x1="600" y1="0" x2="600" y2="900" stroke="#4A7C8E" stroke-width="0.4" opacity="0.12"/>
+  </svg>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">Threat Detection &amp; Intelligence</div>
+    <h1 class="hero-name">Ibrahim<br><em>Abdl-Razik</em></h1>
+    <p class="hero-title">Senior SOC Consultant &amp; Detection Engineer<br>Riyadh, Saudi Arabia</p>
+    <div class="hero-meta">
+      <span><strong>Current:</strong> SIDF — Saudi Industrial Development Fund</span>
+      <span><strong>Clearance background:</strong> Egyptian Army, Electronic Warfare</span>
+      <span><strong>Labs:</strong> CyberDefenders · TryHackMe (DashTX)</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="#experience" class="btn btn-ghost">View career</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stat-block">
+      <div class="hero-stat">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Years in Cybersecurity</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Countries &amp; Sectors</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">Tier 3</span>
+        <span class="stat-label">SOC Depth</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-label">Profile</span>
+    <h2 class="section-title">Detection engineering<br>grounded in <em>intelligence tradecraft</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I build detection systems that actually catch things. With over five years across banking, financial services, and critical infrastructure in Egypt, the UAE, and Saudi Arabia, my work centers on one question: what would an adversary do next, and are we positioned to see it?</p>
+      <p>My path through the Egyptian Army's Electronic Warfare corps shaped how I think — signals analysis, direction-finding, and pattern recognition under operational pressure. That tradecraft carries directly into how I approach threat hunting and detection engineering today.</p>
+      <p>At SIDF I lead 24/7 SOC operations for critical financial infrastructure, engineering custom detections, executing APT hunts, and advising on security posture improvements against Saudi NCA and SAMA compliance frameworks. I work at the intersection of adversary behavior, telemetry gaps, and detection logic — turning threat intelligence into durable coverage.</p>
+    </div>
+    <div class="about-aside">
+      <div class="aside-block">
+        <div class="aside-block-label">Core Focus</div>
         <ul>
-            <li><strong>Threat Detection & Detection Engineering:</strong> Sigma rule authoring, YARA, SIEM correlation & use-case engineering, false-positive reduction, detection-coverage optimization</li>
-            <li><strong>Cyber Threat Intelligence (CTI):</strong> IOC/IOA development, OSINT & threat-feed analysis, adversary profiling, MITRE ATT&CK mapping, Cyber Kill Chain & Diamond Model analysis</li>
-            <li><strong>Threat Hunting:</strong> Hypothesis-driven & proactive hunting, TTP/IOC identification, APT detection across Windows and network telemetry</li>
-            <li><strong>Incident Response & Digital Forensics:</strong> Full incident lifecycle management, root cause analysis (RCA), malware triage, memory analysis, forensic investigation (CHFI)</li>
-            <li><strong>SOC Strategy & Governance:</strong> SOC maturity assessments, gap analysis, 24/7 monitoring design, IR playbook development, SOAR automation of response workflows</li>
-            <li><strong>SIEM & Analytics:</strong> IBM QRadar, FortiSIEM, LogRhythm, Splunk, Elastic Stack (ELK), Wazuh</li>
-            <li><strong>EDR / XDR & Endpoint:</strong> Microsoft Defender for Endpoint, CrowdStrike, Carbon Black, Symantec Cloud, Sophos, Cisco AMP, Suricata, YARA, Sigma</li>
-            <li><strong>Offensive Security & Assessment:</strong> OWASP Top 10, Nmap, Burp Suite, Metasploit, sqlmap, Nessus, OpenVAS, Wireshark</li>
-            <li><strong>Network & Infrastructure:</strong> OSI model, subnetting, VLANs, firewalls (Fortinet, Cisco), VPNs, IPS/IDS, NDR</li>
-            <li><strong>Scripting & Cloud:</strong> Python, Bash, PowerShell (basics), AWS, Microsoft Azure</li>
-            <li><strong>Compliance & Frameworks:</strong> ISO 27001, NIST, CIS Controls, Saudi NCA ECC-1:2018 & CSCC-1:2019</li>
+          <li>Detection Engineering (Sigma, YARA)</li>
+          <li>Threat Hunting (hypothesis-driven)</li>
+          <li>MITRE ATT&CK mapping &amp; coverage analysis</li>
+          <li>SOC maturity &amp; governance</li>
+          <li>Digital Forensics &amp; Incident Response</li>
         </ul>
-    </section>
-
-    <section id="projects" class="container">
-        <h2>Projects</h2>
-
-        <div class="project">
-            <h3>MENA Threat Actor Tracker — Multi-Stage CTI Repository</h3>
-            <p><strong>Objective:</strong> Built and maintain a structured, citation-backed threat-actor tracking repository for the MENA region, combining OSINT research, MITRE ATT&CK TTP mapping, and Sigma detection-coverage auditing into one reproducible pipeline — with a scheduled automation layer that keeps it current without re-researching the entire threat landscape every cycle.</p>
-            <p><strong>Tools &amp; Tech:</strong> Multi-stage orchestration (CTI research, detection engineering), MITRE ATT&CK &amp; Navigator, Sigma, Python/openpyxl, scheduled cloud routine automation, Excel/VLOOKUP data modeling</p>
-            <h4>Repository Structure:</h4>
-            <ul>
-                <li><strong>Threat-actor tracking:</strong> 29 APT/state-sponsored groups and 25 ransomware groups with documented MENA targeting, each row citing a real, verifiable public source and tagged by sourcing confidence (high/medium/low) — revalidated via an independent fact-check pass that caught and corrected several sourcing errors before publication.</li>
-                <li><strong>Country-specific subsets:</strong> Focused Saudi Arabia (4 groups) and Egypt (8 groups) subsets, each with a full MITRE ATT&CK technique breakdown per group and a Navigator layer heatmapping technique overlap across the group set, plus a dedicated financially-motivated-threat-actor discovery pass (a defensible negative result for KSA specifically, narrowing to one high-confidence hit — a $1.4B+ exchange heist — once broadened MENA-wide).</li>
-                <li><strong>Sigma detection-coverage auditing:</strong> Cross-referenced every tracked technique against a 3,700+ rule Sigma corpus to classify Covered/Partial/Not-Covered status, then built a fully normalized per-rule mapping workbook (Rule Library + live VLOOKUP-joined Mapping sheet) so thousands of (group, technique, rule) rows don't duplicate a single byte of YAML text.</li>
-                <li><strong>Monthly automation:</strong> A scheduled cloud routine incrementally updates the tracker — date-bounded discovery restricted to the window since the last run, conditional regeneration of expensive artifacts only when something actually changed, and a state file that makes the pipeline resumable and auditable.</li>
-            </ul>
-            <h4>Notable Engineering Decisions:</h4>
-            <ul>
-                <li><strong>Trust but verify, always:</strong> An independent detection-engineer revalidation pass on Sigma coverage classifications caught a 16% error rate in the first-pass output — every coverage number was then recomputed deterministically rather than trusted from a single pass.</li>
-                <li><strong>Designed around a known automation failure mode:</strong> A sibling routine's stored-config-vs-repo-file drift (editing a config file didn't update the live schedule) was avoided here by making the routine's stored config a thin pointer to a version-controlled file, so logic changes take effect automatically on the next run.</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h3>Automated Weekly Threat Intelligence Pipeline</h3>
-            <p><strong>Objective:</strong> Built a fully automated scheduled pipeline that fetches, triages, and operationalizes fresh threat intelligence reports weekly — producing structured Sigma rules and hunt hypotheses with zero manual analyst input per cycle and a mandatory human-review gate before any output reaches the main branch.</p>
-            <p><strong>Tools &amp; Tech:</strong> Automated orchestration platform (scheduled cloud routine), Sigma, KQL, MITRE ATT&CK, GitHub (branch + draft PR governance), Python</p>
-            <h4>Pipeline Design:</h4>
-            <ul>
-                <li><strong>Sources Layer:</strong> 38 curated TI outlets — 35 global vendors/DFIR shops plus 3 MENA-dedicated sources (CTM360, Resecurity, Help AG) — checked weekly against a strict 7-day publication window; stale reports are excluded unconditionally.</li>
-                <li><strong>MENA-Region Prioritization:</strong> Up to 5 reports processed per cycle, ranked by MENA-region relevance — aligning pipeline output with the operational focus of the target environment.</li>
-                <li><strong>4-Stage Automated Cascade:</strong> TTP/IOC extraction (structured JSON with confidence scoring) → automated routing classifier (separates detection candidates from hunt candidates based on observability and FP manageability) → detection rule building + hunt hypothesis generation running in parallel.</li>
-                <li><strong>Output Governance:</strong> Every run commits to a dated branch and opens a draft PR — never pushes to main directly, never auto-merges. Empty weeks produce no PR. The pipeline logic is version-controlled, making behavior fully auditable without touching any config.</li>
-            </ul>
-            <h4>Proof-of-Concept Case — APT34/OilRig:</h4>
-            <ul>
-                <li>Manually exercised against Check Point Research's Veaty/Spearal/CacheHttp.dll report (APT34/OilRig targeting Iraqi government infrastructure, 2024-09-11): 18 TTPs extracted at medium confidence → 6 detection candidates produced (5 built as Sigma rules; 1 correctly declined because the candidate was a decaying IOC unsuitable for a durable rule) + 11 hunt hypotheses generated.</li>
-                <li>Test run surfaced a gap in the scheduled routine (no regional weighting, no strict date window) that was corrected before automation went live.</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h3>External Threat Profile Orchestration</h3>
-            <p><strong>Objective:</strong> Designed a multi-stage OSINT pipeline that produces a Mandiant-structured external threat profile for any named organization — covering adversary threat landscape, externally visible attack surface, and coarse risk framing — using only public data, with no internal access to the target required.</p>
-            <p><strong>Tools &amp; Tech:</strong> Multi-stage automation pipeline, MITRE ATT&CK Navigator, OSINT (passive DNS, certificate transparency, BGP data, web fingerprinting), CVE/EPSS/CISA KEV, FAIR risk quantification</p>
-            <h4>Pipeline Architecture:</h4>
-            <ul>
-                <li><strong>Stage 1 — Attack Surface Mapping:</strong> Discovers external footprint, technology stack, and exposed infrastructure using passive OSINT only; back-fills sector and region context if not provided.</li>
-                <li><strong>Stage 2 (parallel) — Threat Landscape + Vulnerability Cross-Reference:</strong> Actor profiling identifies which groups target this sector/region and with which TTPs (mapped to ATT&CK); vulnerability analysis cross-references the fingerprinted technology stack against CVE/EPSS/CISA KEV.</li>
-                <li><strong>Stage 3 — Risk Synthesis:</strong> Combines findings into a coarse risk/impact framing using FAIR methodology, explicitly labeled as inferred from public data — never overstated as an internal assessment.</li>
-                <li><strong>Output structure:</strong> Mandiant Figure 6 three-circle model (Threat Landscape ∩ Organizational Profile ∩ Risk &amp; Impact) with BLUF discipline and calibrated confidence language throughout.</li>
-            </ul>
-            <h4>Outcome:</h4>
-            <ul>
-                <li>Validated end-to-end against a critical-sector financial institution — producing a complete threat profile covering MENA-active APT groups, exposed assets, and risk framing relevant to the organization's actual external footprint.</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h3>Hunt-to-Detection Closure Loop</h3>
-            <p><strong>Objective:</strong> Built a structured automated workflow that prevents threat-hunting findings from dead-ending as one-off write-ups — routing confirmed hunt findings through detection engineering, then validating the resulting rule with a purple team simulation before closing the loop.</p>
-            <p><strong>Tools &amp; Tech:</strong> Multi-stage automation pipeline, Sigma, KQL, MITRE ATT&CK, Atomic Red Team / MITRE CALDERA</p>
-            <h4>Workflow:</h4>
-            <ul>
-                <li><strong>Gate-check routing:</strong> Each hunt finding is evaluated before progressing — only findings confirmed repeatable and observable continue to rule-building; active compromise indicators are escalated directly to incident response instead.</li>
-                <li><strong>Detection Engineering:</strong> Produces a Sigma/KQL rule from the hunt's confirmed TTPs, data sources, and query logic — or an explicit visibility-gap flag if the behavior isn't yet observable (an unfireable rule creates false confidence and is worse than an honest gap).</li>
-                <li><strong>Purple Team Validation:</strong> Simulates the exact technique using Atomic Red Team or equivalent in a non-production environment and confirms the SIEM/EDR actually alerts — "we built a rule" is not the same as "we confirmed it fires."</li>
-                <li><strong>Failure Handling:</strong> Distinguishes a logic gap (rule logic is wrong — fix and re-test once) from a pipeline/ingestion gap (log source or collection issue — document and close as a separate finding rather than looping indefinitely on something detection engineering cannot fix).</li>
-                <li><strong>Closure Feedback:</strong> Logs the validated status so the next hunt cycle deprioritizes re-hunting the same TTP and redirects effort to the next visibility gap.</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h3>Threat Hunting Queries & MITRE ATT&CK Detection Library</h3>
-            <p><strong>Objective:</strong> Developed and operationalized a library of threat-hunting queries and detection rules mapped to MITRE ATT&CK tactics and techniques, enabling proactive APT detection across enterprise environments.</p>
-            <p><strong>Tools Used:</strong> IBM QRadar, Splunk, Elastic Stack (ELK), CrowdStrike, Sigma, MITRE ATT&CK Navigator</p>
-            <h4>Methodology:</h4>
-            <ul>
-                <li><strong>"Know Normal to Hunt Evil" Baseline (SANS FOR508):</strong> Built per-process baselines covering expected parent/path/account/instance-count/start-time for core OS processes (lsass, svchost, explorer, winlogon, etc.) — deviations from baseline (wrong parent, misspelled name, wrong path) surface masquerading malware and process injection attempts without relying on signature matching.</li>
-                <li><strong>Three-Tier Hypothesis Framework:</strong> Structured hunt missions across three tiers — intelligence-led (actor TTP reports drive the hypothesis), TTP-driven (ATT&CK technique selected, hunt designs the data query), and anomaly-based (statistical deviation from established behavioral baseline).</li>
-                <li><strong>ATT&CK Coverage Gap Analysis:</strong> Used MITRE ATT&CK Navigator to map existing detection rules against the full technique matrix, identifying blind spots by tactic — prioritizing coverage expansion in Initial Access, Lateral Movement, and Credential Access where APT dwell time is highest.</li>
-                <li><strong>ATT&CK-Mapped Query Development:</strong> Created custom Sigma rules and SIEM correlation queries targeting high-value techniques: Kerberoasting (T1558.003), DCSync (T1003.006), Pass-the-Hash (T1550.002), WMI persistence (T1047), Golden Ticket (T1558.001), scheduled task abuse (T1053.005), PowerShell execution (T1059.001), and lateral movement via PsExec/Scheduled Tasks/WMI.</li>
-                <li><strong>Telemetry Correlation:</strong> Correlated Windows event logs (4624/4625/4648/4698/4702/4768/4769), Sysmon (Event IDs 1/3/7/8/10/11/13), EDR telemetry, and network flow data — building multi-source detection logic that degrades gracefully when individual log sources are unavailable.</li>
-                <li><strong>Hunt-to-Detection Handoff:</strong> Formalized findings routing — confirmed repeatable findings trigger a structured handoff to detection engineering; active compromise indicators route directly to incident response; inconclusive findings return to the hunt queue for further investigation.</li>
-                <li><strong>Detection Tuning:</strong> Iteratively refined rules against production telemetry to reduce false positives while broadening detection coverage — scoring each candidate on Coverage, Durability, Complexity, Confidence, FP rate, and Actionable content before promoting to production.</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h3>SOC Automation & Incident Response Playbooks</h3>
-            <p><strong>Objective:</strong> Built automated incident-response workflows and a structured multi-phase IR chain aligned to NIST SP 800-61 and SANS PICERL, standardizing detection through closure — including mandatory post-incident detection validation to confirm exposed gaps are actually fixed before an incident is closed.</p>
-            <p><strong>Tools Used:</strong> IBM Resilient SOAR, Python, Bash, QRadar, MITRE ATT&CK</p>
-            <h4>Methodology:</h4>
-            <ul>
-                <li><strong>Classification-First Approach:</strong> All incidents are classified (P1–P4) before any downstream action is triggered — severity drives SITREP cadence, escalation path, and whether the full IR chain is warranted. A P4/informational finding exits at triage; the full chain is never run against noise.</li>
-                <li><strong>Multi-Phase IR Chain (NIST SP 800-61 + SANS PICERL aligned):</strong> Classify and open SITREP → parallel DFIR forensics + artifact analysis (timeline, root cause, persistence/lateral-movement path) → SOC leadership escalation (confirm/upgrade severity, executive bridge decision) → BC/DR activation (conditional — only on critical system down, backups targeted, or ransomware confirmed) → Post-Incident Report (root cause, timeline, remediation, lessons learned) → purple team detection validation → executive reporting.</li>
-                <li><strong>Mandatory Detection Validation:</strong> Confirmed TTPs from forensic findings are simulated post-incident to verify that existing detections would have caught the technique — or that any new rule built in response actually fires. An incident that closes without confirming the detection gap is fixed is a recurrence waiting to happen.</li>
-                <li><strong>Playbook Development:</strong> Created IR playbooks for phishing, ransomware, lateral movement, and identity compromise — each mapped to MITRE ATT&CK tactics/techniques with explicit containment actions, evidence-collection checklists, and SOAR-triggerable decision points.</li>
-                <li><strong>SOAR Integration:</strong> Automated alert triage, IOC enrichment, and containment actions using IBM Resilient SOAR — reducing manual analyst steps and accelerating MTTR.</li>
-                <li><strong>Python Scripting:</strong> Developed scripts for log parsing, IOC extraction, and ticket generation to eliminate redundant SOC workflows and feed structured data back into the detection feedback loop.</li>
-            </ul>
-        </div>
-
-        <div class="project">
-            <h3>Comprehensive Vulnerability Assessment</h3>
-            <p><strong>Objective:</strong> Conducted a vulnerability assessment on local and external-facing assets to identify and mitigate security risks, leveraging both passive and active reconnaissance techniques.</p>
-            <p><strong>Tools Used:</strong> Shodan, Nmap, Dirsearch, Sublist3r, Xray, Metasploit</p>
-            <h4>Methodology:</h4>
-            <ul>
-                <li><strong>Passive Information Gathering with Shodan:</strong> Used Shodan to perform passive reconnaissance, identifying publicly exposed services, devices, and their associated metadata. Collected information on open ports, service banners, and potential vulnerabilities for external-facing assets.</li>
-                <li><strong>Active Information Gathering with Nmap:</strong> Conducted network scans using Nmap to enumerate open ports, running services, and operating system information. Used Nmap Scripting Engine (NSE) to detect vulnerabilities such as outdated software versions, default credentials, and misconfigurations.</li>
-                <li><strong>Subdomain Enumeration:</strong> Used Sublist3r to discover additional subdomains, expanding the attack surface for potential vulnerabilities.</li>
-                <li><strong>Directory Scanning with Dirsearch:</strong> Performed directory brute-forcing on web servers to locate hidden or sensitive directories, including admin panels and backup files.</li>
-                <li><strong>Vulnerability Scanning with Xray:</strong> Utilized Xray scanner to identify critical vulnerabilities in web applications, including SQL injection, Cross-Site Scripting (XSS), and file inclusion vulnerabilities.</li>
-                <li><strong>Exploitation and Post-Exploitation with Metasploit:</strong> Leveraged Metasploit Framework to simulate exploitation of identified vulnerabilities in a controlled environment, including privilege escalation and lateral movement.</li>
-            </ul>
-            <h4>Outcome:</h4>
-            <ul>
-                <li>Successfully uncovered 8 critical vulnerabilities, including exposed sensitive directories, SQL injection, XSS, and file upload vulnerabilities in web applications.</li>
-                <li>Provided a detailed report with prioritized mitigation strategies, recommending actions such as patch management, access control updates, and enhanced monitoring.</li>
-                <li>Strengthened the security posture of the organization by resolving all critical issues and improving overall resilience against potential attacks.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="certifications" class="container">
-        <h2>Certifications</h2>
+      </div>
+      <div class="aside-block">
+        <div class="aside-block-label">Frameworks &amp; Compliance</div>
         <ul>
-            <li>GIAC Foundational Cybersecurity Technologies (GFACT) — 2023</li>
-            <li>MITRE ATT&CK Defender™ (MAD): ATT&CK® Fundamentals</li>
-            <li>MITRE ATT&CK Defender™ (MAD): ATT&CK® SOC Assessments</li>
-            <li>MITRE ATT&CK Defender™ (MAD): ATT&CK® Cyber Threat Intelligence</li>
-            <li>MITRE ATT&CK Defender™: ATT&CK® Threat Hunting</li>
-            <li>EC-Council Certified Ethical Hacker (CEH) — 2020</li>
-            <li>EC-Council Certified Incident Handler (ECIH) — 2020</li>
-            <li>EC-Council Computer Hacking Forensic Investigator (CHFI) — 2020</li>
-            <li>AWS Certified Cloud Practitioner Essentials</li>
-            <li>IBM Resilient SOAR Foundations</li>
+          <li>MITRE ATT&CK &amp; D3FEND</li>
+          <li>Saudi NCA (ECC-1:2018, CSCC-1:2019)</li>
+          <li>SAMA Cyber Security Framework</li>
+          <li>ISO 27001 · NIST · CIS Controls</li>
+          <li>Cyber Kill Chain · Diamond Model</li>
         </ul>
-    </section>
-
-    <section id="CTF" class="container">
-        <h2>CTF & Training Platforms</h2>
+      </div>
+      <div class="aside-block">
+        <div class="aside-block-label">Languages</div>
         <ul>
-            <li><a href="https://cyberdefenders.org/p/DashTX">CyberDefenders (DashTX)</a> — Blue-team CTF challenges focused on threat detection and forensics</li>
-            <li><a href="https://tryhackme.com/p/DashTX">TryHackMe (DashTX)</a> — Completed: Introduction to Cybersecurity, Pre Security, Complete Beginner, Web Fundamentals learning paths</li>
-            <li>Applied Network Defense: Investigation Theory, Practical Packet Analysis, ELK for Security Analysis, Practical Threat Hunting</li>
-            <li>TCM Security: Practical Malware Analysis & Triage, Practical Ethical Hacking</li>
-            <li>SpecterOps Tradecraft Analysis 2022</li>
+          <li>Arabic — Native</li>
+          <li>English — Highly proficient</li>
         </ul>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="blog" class="container">
-        <h2>Blog Posts</h2>
-        <ul>
-            <li>Coming soon — follow me on <a href="https://www.linkedin.com/in/irazik">LinkedIn</a> for security insights and write-ups</li>
+<hr class="full-divider">
+
+<!-- EXPERIENCE -->
+<div class="experience-section" id="experience">
+  <div class="experience-inner">
+    <div class="section-header">
+      <span class="section-label">Career</span>
+      <h2 class="section-title">A record built<br>across <em>live environments</em></h2>
+    </div>
+
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <span class="exp-date">Oct 2024 — Present</span>
+        <span class="exp-location">Riyadh, Saudi Arabia</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role">SOC Consultant</h3>
+        <p class="exp-org">Saudi Industrial Development Fund (SIDF)</p>
+        <ul class="exp-bullets">
+          <li>Direct 24/7 Security Operations Center monitoring and incident response for critical financial infrastructure.</li>
+          <li>Engineer custom detection logic and provide Tier-3+ support for deep-dive investigations, root cause analysis, and post-mortem reviews.</li>
+          <li>Map IOCs and adversary TTPs to MITRE ATT&CK to strengthen detection coverage; identify gaps and onboard new data sources.</li>
+          <li>Execute proactive threat-hunting missions targeting APTs across Windows and network telemetry.</li>
+          <li>Develop SOC playbooks, SOPs, and IR workflows; lead SOC maturity assessments aligned to Saudi NCA (ECC-1:2018, CSCC-1:2019).</li>
+          <li>Guide SOAR automation initiatives and communicate security posture to C-level stakeholders.</li>
         </ul>
-    </section>
+      </div>
+    </div>
 
-    <section id="contact" class="container">
-        <h2>Contact Me</h2>
-        <form action="mailto:ibrahimabdlrazik@gmail.com" method="post" enctype="text/plain">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <span class="exp-date">Feb 2023 — Oct 2024</span>
+        <span class="exp-location">Saudi Arabia</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role">L3 SOC Analyst — Team Lead</h3>
+        <p class="exp-org">Securenass</p>
+        <ul class="exp-bullets">
+          <li>Led team-lead function overseeing analysis of network traffic, system logs, and security telemetry across the monitored estate.</li>
+          <li>Engineered and fine-tuned SIEM correlation rules and behavioral detections to eliminate false positives and broaden coverage.</li>
+          <li>Managed end-to-end incident lifecycle — coordination, escalation, resolution — aligned to client SLAs.</li>
+          <li>Relayed actionable advisories from the Central Bank of Egypt (CBE) to stakeholders; synthesized packet inspection findings into executive security-posture reports.</li>
+          <li>Designed and documented standard work processes within the SOC environment.</li>
+        </ul>
+      </div>
+    </div>
 
-    <footer>
-        <p>Connect with me on
-            <a href="https://www.linkedin.com/in/irazik" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a> |
-            <a href="https://github.com/DashTX707" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a> |
-            <a href="https://x.com/DasHTX0" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> X</a> |
-            <a href="mailto:ibrahimabdlrazik@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        </p>
-    </footer>
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <span class="exp-date">Dec 2021 — Feb 2023</span>
+        <span class="exp-location">UAE</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role">Senior SOC Analyst</h3>
+        <p class="exp-org">Coordinates Middle East by GBM</p>
+        <ul class="exp-bullets">
+          <li>Investigated complex security incidents using integrated SIEM, EDR, and NDR solutions.</li>
+          <li>Monitored real-time alerts and traffic for high-value assets: database servers, email infrastructure, security devices.</li>
+          <li>Recommended and implemented detection use cases, reducing noise while enhancing coverage.</li>
+          <li>Used packet inspection and log correlation for forensic-quality incident tracking.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <span class="exp-date">Jan 2021 — Nov 2021</span>
+        <span class="exp-location">Egypt</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role">L1 SOC Analyst</h3>
+        <p class="exp-org">Banque du Caire (BDC)</p>
+        <ul class="exp-bullets">
+          <li>Performed technical analysis of network flows and intrusion alerts for critical banking infrastructure.</li>
+          <li>Maintained 24/7 monitoring for email, database, web servers, and Domain Controllers.</li>
+          <li>Developed Python automation scripts to streamline investigative workflows and reduce analyst overhead.</li>
+          <li>Contributed to playbook development and use-case engineering for investigation processes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <span class="exp-date">Nov 2017 — Apr 2020</span>
+        <span class="exp-location">Egypt</span>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role">Electronic Warfare First Lieutenant</h3>
+        <p class="exp-org">Egyptian Army</p>
+        <ul class="exp-bullets">
+          <li>Commanded signal-analysis and direction-finding operations to detect and locate electronic signal sources.</li>
+          <li>Conducted technical analysis of intercepted data to identify, classify, and extract actionable intelligence.</li>
+          <li>Produced technical intelligence reports supporting strategic decision-making under operational pressure.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="section-header">
+    <span class="section-label">Capabilities</span>
+    <h2 class="section-title">What I build<br>and <em>how I operate</em></h2>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-card-label">01 — Primary Discipline</div>
+      <h3 class="skill-card-title">Threat Detection &amp; Detection Engineering</h3>
+      <p style="font-size:12px;color:rgba(240,237,230,0.65);line-height:1.7;">High-fidelity correlation rules, behavioral detections, use-case engineering, detection gap analysis, and detection-as-code workflows. False-positive reduction and detection testing at scale.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Sigma</span>
+        <span class="skill-tag">YARA</span>
+        <span class="skill-tag">KQL</span>
+        <span class="skill-tag">SPL</span>
+        <span class="skill-tag">MITRE ATT&CK</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label">02 — Intelligence</div>
+      <h3 class="skill-card-title">Cyber Threat Intelligence</h3>
+      <p style="font-size:12px;color:rgba(240,237,230,0.65);line-height:1.7;">IOC/IOA development, OSINT and threat-feed analysis, adversary profiling, and Kill Chain / Diamond Model analysis. STIX/TAXII integration and intelligence operationalization.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">IOC/IOA</span>
+        <span class="skill-tag">OSINT</span>
+        <span class="skill-tag">STIX/TAXII</span>
+        <span class="skill-tag">Adversary Profiling</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label">03 — Hunting</div>
+      <h3 class="skill-card-title">Proactive Threat Hunting</h3>
+      <p style="font-size:12px;color:rgba(240,237,230,0.65);line-height:1.7;">Hypothesis-driven and proactive hunting across Windows telemetry and network data. APT identification across the full kill chain, translating hunt results into permanent detections.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">APT Detection</span>
+        <span class="skill-tag">Windows Telemetry</span>
+        <span class="skill-tag">Network Hunting</span>
+        <span class="skill-tag">TTP Analysis</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label">04 — Response</div>
+      <h3 class="skill-card-title">Incident Response &amp; Digital Forensics</h3>
+      <p style="font-size:12px;color:rgba(240,237,230,0.65);line-height:1.7;">Full incident lifecycle management, root cause analysis, malware triage, memory forensics, and post-mortem documentation. CHFI-certified investigative methodology.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Memory Forensics</span>
+        <span class="skill-tag">Malware Triage</span>
+        <span class="skill-tag">RCA</span>
+        <span class="skill-tag">CHFI</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label">05 — Platform Engineering</div>
+      <h3 class="skill-card-title">SIEM / XDR Engineering</h3>
+      <p style="font-size:12px;color:rgba(240,237,230,0.65);line-height:1.7;">Architecture, optimization, and integration of SIEM and XDR platforms. Log ingestion pipeline design — parsing, normalization, enrichment — and SOAR automation across the SOC stack.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">QRadar</span>
+        <span class="skill-tag">Splunk</span>
+        <span class="skill-tag">ELK</span>
+        <span class="skill-tag">Wazuh</span>
+        <span class="skill-tag">SOAR</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label">06 — Governance</div>
+      <h3 class="skill-card-title">SOC Strategy &amp; Compliance</h3>
+      <p style="font-size:12px;color:rgba(240,237,230,0.65);line-height:1.7;">SOC maturity assessments, gap analysis, 24/7 monitoring design, playbook &amp; SOP development. Deep familiarity with Saudi NCA, SAMA CSF, ISO 27001, NIST, and CIS Controls.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">NCA ECC-1</span>
+        <span class="skill-tag">SAMA CSF</span>
+        <span class="skill-tag">ISO 27001</span>
+        <span class="skill-tag">NIST</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOOLS MATRIX -->
+<section style="padding-top: 0;">
+  <div class="section-header">
+    <span class="section-label">Tools</span>
+    <h2 class="section-title">Platform &amp; <em>tool coverage</em></h2>
+  </div>
+  <div class="tools-matrix">
+    <div class="tool-item"><span class="tool-name">IBM QRadar</span><span class="tool-category">SIEM</span></div>
+    <div class="tool-item"><span class="tool-name">FortiSIEM</span><span class="tool-category">SIEM</span></div>
+    <div class="tool-item"><span class="tool-name">Splunk</span><span class="tool-category">SIEM</span></div>
+    <div class="tool-item"><span class="tool-name">Elastic Stack</span><span class="tool-category">SIEM</span></div>
+    <div class="tool-item"><span class="tool-name">LogRhythm</span><span class="tool-category">SIEM</span></div>
+    <div class="tool-item"><span class="tool-name">Wazuh</span><span class="tool-category">SIEM / XDR</span></div>
+    <div class="tool-item"><span class="tool-name">MDE</span><span class="tool-category">EDR / XDR</span></div>
+    <div class="tool-item"><span class="tool-name">CrowdStrike</span><span class="tool-category">EDR / XDR</span></div>
+    <div class="tool-item"><span class="tool-name">Carbon Black</span><span class="tool-category">EDR</span></div>
+    <div class="tool-item"><span class="tool-name">Cisco AMP</span><span class="tool-category">EDR</span></div>
+    <div class="tool-item"><span class="tool-name">Suricata</span><span class="tool-category">NDR / IDS</span></div>
+    <div class="tool-item"><span class="tool-name">Wireshark</span><span class="tool-category">Network</span></div>
+    <div class="tool-item"><span class="tool-name">Nessus</span><span class="tool-category">Vulnerability</span></div>
+    <div class="tool-item"><span class="tool-name">Metasploit</span><span class="tool-category">Offensive</span></div>
+    <div class="tool-item"><span class="tool-name">Burp Suite</span><span class="tool-category">Web</span></div>
+    <div class="tool-item"><span class="tool-name">Python</span><span class="tool-category">Automation</span></div>
+    <div class="tool-item"><span class="tool-name">PowerShell</span><span class="tool-category">Scripting</span></div>
+    <div class="tool-item"><span class="tool-name">Bash</span><span class="tool-category">Scripting</span></div>
+    <div class="tool-item"><span class="tool-name">AWS</span><span class="tool-category">Cloud</span></div>
+    <div class="tool-item"><span class="tool-name">Azure</span><span class="tool-category">Cloud</span></div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header">
+    <span class="section-label">Credentials</span>
+    <h2 class="section-title">Certifications &amp;<br><em>professional development</em></h2>
+  </div>
+  <div class="certs-list">
+    <div class="cert-row">
+      <span class="cert-issuer">GIAC</span>
+      <span class="cert-name">GIAC Foundational Cybersecurity Technologies (GFACT)</span>
+      <span class="cert-year">2023</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">MITRE</span>
+      <span class="cert-name">ATT&CK Defender (MAD) — Fundamentals, SOC Assessments, CTI, Threat Hunting</span>
+      <span class="cert-year">Active</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">EC-Council</span>
+      <span class="cert-name">Certified Ethical Hacker (CEH)</span>
+      <span class="cert-year">2020</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">EC-Council</span>
+      <span class="cert-name">Certified Incident Handler (ECIH)</span>
+      <span class="cert-year">2020</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">EC-Council</span>
+      <span class="cert-name">Computer Hacking Forensic Investigator (CHFI)</span>
+      <span class="cert-year">2020</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">AWS</span>
+      <span class="cert-name">AWS Certified Cloud Practitioner Essentials</span>
+      <span class="cert-year">Active</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">IBM</span>
+      <span class="cert-name">IBM Resilient SOAR Foundations</span>
+      <span class="cert-year">Active</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">Training</span>
+      <span class="cert-name">TCM Security: Practical Malware Analysis &amp; Triage · Practical Ethical Hacking</span>
+      <span class="cert-year">—</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">SpecterOps</span>
+      <span class="cert-name">Tradecraft Analysis 2022</span>
+      <span class="cert-year">2022</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">SANS</span>
+      <span class="cert-name">FOR508 / FOR608 — Advanced Digital Forensics &amp; Incident Response</span>
+      <span class="cert-year">Training</span>
+    </div>
+    <div class="cert-row">
+      <span class="cert-issuer">Education</span>
+      <span class="cert-name">B.Sc. Computer Science — Mansoura University (Excellent)</span>
+      <span class="cert-year">2017</span>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-headline">Open to<br><em>the right</em><br>conversation.</h2>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:ibrahimabdlrazik@gmail.com" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">ibrahimabdlrazik@gmail.com</span>
+      </a>
+      <a href="tel:+966531650685" class="contact-link">
+        <span class="contact-link-label">KSA</span>
+        <span class="contact-link-value">+966 531 650 685</span>
+      </a>
+      <a href="https://linkedin.com/in/irazik" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">linkedin.com/in/irazik</span>
+      </a>
+      <a href="https://dashtx707.github.io/Portofolio/" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-label">Portfolio</span>
+        <span class="contact-link-value">dashtx707.github.io/Portofolio</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Ibrahim Abdl-Razik — Threat Detection &amp; Intelligence · Riyadh, Saudi Arabia</p>
+  <div class="footer-labs">
+    <a href="https://cyberdefenders.org/p/DashTX" target="_blank" rel="noopener">CyberDefenders</a>
+    <a href="https://tryhackme.com/p/DashTX" target="_blank" rel="noopener">TryHackMe</a>
+    <a href="https://dashtx707.github.io/Portofolio/" target="_blank" rel="noopener">Portfolio</a>
+  </div>
+</footer>
+
 </body>
 </html>
